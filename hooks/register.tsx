@@ -288,7 +288,7 @@ const drawMarkdown = ($: EngineInterface, el: ReturnType<EngineInterface['ui']['
   }
   const elements = renderBlocks(el, style, blocks, columns, drawn, copy, folder($, el, open))
   const button = reply === undefined ? null : copy(reply, 'reply', '⧉ copy reply')
-  return button ? [...elements, <el.Box key="reply" alignSelf="flex-end">{button}</el.Box>] : elements
+  return button ? [...elements, <el.Box position="absolute" bottom={0} right={0} display="none" hover={{ display: 'flex' }}>{button}</el.Box>] : elements
 }
 
 export const register: Register = (on, options) => {
@@ -438,7 +438,7 @@ export const register: Register = (on, options) => {
     const surfaceStyle = forSurface(fit(e.viewport), e.surface)
     const open = await read($, unfolded)
     return (
-      <Box flexDirection="row">
+      <Box key="msg" flexDirection="row">
         <Box width={2} flexShrink={0}>
           <Text color={style.theme.accent}>{e.props.isFirstOfReply ? '●' : ' '}</Text>
         </Box>

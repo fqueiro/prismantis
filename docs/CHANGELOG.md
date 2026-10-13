@@ -6,6 +6,7 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Changed
 
+- Copy buttons take no space: a block's float over its top-right corner while the pointer is over the block, and `⧉ copy reply` over the reply's bottom-right corner while the pointer is anywhere on the reply. Hidden buttons are not reached by ctrl+x tab.
 - Links that open a file in VS Code, `vscode://file/…` and `vscode-insiders://file/…`, become clickable terminal hyperlinks, so a reply can point at `src/app.ts:42` and a click opens that line. Other `vscode://` links, which reach extensions' URI handlers (`vscode://vscode.git/clone?url=…`), still draw as link text, as do `javascript:`, `file:`, `mailto:` and plain `http:`.
 
 ### Fixed
