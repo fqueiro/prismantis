@@ -1,15 +1,15 @@
 {
   "name": "prismantis",
   "owner": {
-    "name": "Nahum Litvin",
-    "url": "https://github.com/NahumLitvin"
+    "name": "Francisco Queiro",
+    "url": "https://github.com/fqueiro"
   },
   "plugins": [
     {
       "name": "prismantis",
       "description": "Colorful, themeable rendering for Claude Code replies: tables, headings, code, numbers, paths and links.",
-      "source": { "source": "github", "repo": "NahumLitvin/prismantis", "ref": "v0.18.1", "sha": "c49f5fc232edad5889bee33f2bf61771fc7364d9" },
-      "version": "0.18.1",
+      "source": "./",
+      "version": "0.18.1-fq.1",
       "category": "appearance",
       "tags": [
         "mod",
@@ -20,5 +20,5 @@
       ]
     }
   ],
-  "description": "Prismantis: colorful, themeable rendering for Claude Code replies."
+  "description": "Prismantis by Nahum Litvin, with LaTeX in background sessions, clickable VS Code file links and copy buttons on hover."
 }
