@@ -483,11 +483,12 @@ test('a one-paragraph English block gets no copy reply button', async $ => {
   await ui.unmount()
 })
 
-test('only https and localhost links become terminal hyperlinks', async $ => {
-  const ui = await $.ui.mount(mount('[docs](https://example.com) [dev](http://localhost:3000) [plain](http://example.com) [mail](mailto:a@example.com) [run](javascript:alert(1)) [disk](file:///etc/passwd)'))
+test('only https, localhost and VS Code file links become terminal hyperlinks', async $ => {
+  const ui = await $.ui.mount(mount('[docs](https://example.com) [dev](http://localhost:3000) [plain](http://example.com) [mail](mailto:a@example.com) [run](javascript:alert(1)) [disk](file:///etc/passwd) [note](vscode://file/C:/src/notes.md:12) [insiders](vscode-insiders://file/home/me/app.ts) [clone](vscode://vscode.git/clone?url=https://example.com/x.git)'))
   const links = (await ui.findAll({ type: 'Link' })).map(l => l.props.href)
-  expect(links).toEqual(['https://example.com', 'http://localhost:3000'])
+  expect(links).toEqual(['https://example.com', 'http://localhost:3000', 'vscode://file/C:/src/notes.md:12', 'vscode-insiders://file/home/me/app.ts'])
   expect(await ui.find({ type: 'Text', text: /^run$/ })).toBeDefined()
+  expect(await ui.find({ type: 'Text', text: /^clone$/ })).toBeDefined()
   await ui.unmount()
 })
 

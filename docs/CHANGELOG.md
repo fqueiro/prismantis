@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Changed
+
+- Links that open a file in VS Code, `vscode://file/…` and `vscode-insiders://file/…`, become clickable terminal hyperlinks, so a reply can point at `src/app.ts:42` and a click opens that line. Other `vscode://` links, which reach extensions' URI handlers (`vscode://vscode.git/clone?url=…`), still draw as link text, as do `javascript:`, `file:`, `mailto:` and plain `http:`.
+
 ### Fixed
 
 - LaTeX math draws as images wherever `CLAUDE_CODE_FORCE_TERMINAL_IMAGES` is set, the variable that makes Claude Code draw images, also inside tmux, as Claude Code does. Before, prismantis found the terminal only by `TERM_PROGRAM`, `TERM` and `KITTY_WINDOW_ID`, so a background session, whose process carries none of them, drew every formula as text even when viewed in kitty or Ghostty.

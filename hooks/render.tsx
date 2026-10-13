@@ -102,7 +102,7 @@ const renderInline = (el: ElementTable, style: Style, nodes: Inline[], keyBase: 
       case 'math':
         return <Text key={key} italic color={t.emphasis}>{n.text}</Text>
       case 'link':
-        return /^(https:|http:\/\/localhost\b)/i.test(n.href)
+        return /^(https:|http:\/\/localhost\b|vscode(-insiders)?:\/\/file\/)/i.test(n.href)
           ? n.text === n.href ? <el.Link key={key} href={n.href} /> : <el.Link key={key} href={n.href}><Text color={t.link} underline>{n.text}</Text></el.Link>
           : <Text key={key} color={t.link} underline>{n.text}</Text>
       case 'number':
