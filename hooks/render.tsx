@@ -537,7 +537,9 @@ const copySource = (block: Block): string | undefined =>
 export const renderBlocks = (el: ElementTable, style: Style, blocks: Block[], columns: number, drawn: Drawn = new Map(), copy?: CopyButton, fold?: Fold): RenderElement[] => {
   const { Box, Text } = el
   const t = style.theme
-  const floating = (button: RenderElement | null) => (button ? <Box position="absolute" top={0} right={0} display="none" hover={{ display: 'flex' }}>{button}</Box> : null)
+  const floating = (button: RenderElement | null) => (button ? <Box position="absolute" top={0} left={0} minWidth="100%" justifyContent="flex-end" display="none" hover={{ display: 'flex' }}>{button}</Box> : null)
+  const reserved = (buttons: (RenderElement | null | undefined)[]): number =>
+    buttons.reduce<number>((w, button) => (button?.type === 'Button' ? w + (w ? 1 : 0) + width(`[ ${button.props.label} ]`) : w), 0)
   const rtlTables = blocks.map(block => style.reorder && block.kind === 'table' && isRtlTable(style, block))
   const rendered = blocks.map((block, b) => {
     const key = `b${b}`
@@ -607,7 +609,7 @@ export const renderBlocks = (el: ElementTable, style: Style, blocks: Block[], co
     const { Box } = el
     const rtl = style.reorder && block !== undefined && hasRtl(block.raw)
     return (
-      <Box key={`c${b}`} flexDirection="column" {...(rtl && (block?.kind === 'list' || rtlTables[b]) ? {} : { alignSelf: 'flex-start' as const })}>
+      <Box key={`c${b}`} flexDirection="column" minWidth={reserved(second ? [first, second, html] : [first])} {...(rtl && (block?.kind === 'list' || rtlTables[b]) ? {} : { alignSelf: 'flex-start' as const })}>
         {element}
         {floating(button)}
       </Box>
